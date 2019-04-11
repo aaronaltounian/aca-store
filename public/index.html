@@ -5,10 +5,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>My Store</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-   
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-     <script src="products.js"></script>    
+    <header>
+        <a onclick="displayProducts()">Home</a>
+        <div class="search">
+            <input id="searchBox" type="text" placeholder="Find a product..." />
+            <button id='searchButton'>Search!</button>
+        </div>
+        <h1>Awesome Store</h1>
+    </header>
+
+    <ul id="list"></ul>
+
+    <div id="itemContainer"></div>
+
+    <div id="searchResults"></div>
+
+    <script src="products.js"></script>    
     <script src="index.js"></script>   
 </body>
 </html>
