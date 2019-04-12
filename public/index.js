@@ -14,14 +14,14 @@ const resetDivs = () => {
 }
 
 // function to display all products on page load or when 'home' link is clicked:
-const displayProducts = () => {
+const displayProducts = (products) => {
     resetDivs();
     products.map( (value, index) => {
         list.innerHTML += `<li> <button>Add To Cart</button> <a id='${index}' onclick='focusProduct(${index})'>${value.name}</a></li>`
     })
 }
 
-displayProducts();
+displayProducts(products);
 
 // function to display details about a product when clicked:
 const focusProduct = (index) => {
@@ -34,13 +34,18 @@ const focusProduct = (index) => {
 let searchBox = document.getElementById('searchBox');
 let searchButton = document.getElementById('searchButton');
 
+
+// look into filter w/ regex
 searchButton.onclick = function() {
-    let regex = new RegExp(searchBox.value);
-    if( searchBox.value.length === 0 ) alert('You must type in something to search!');
+    let searchText = searchBox.value;
+    searchText = searchText.toLowerCase();
+    let regex = new RegExp(searchText);
+    // if( searchBox.value.length === 0 ) alert('You must type in something to search!');
     console.log(regex);
     for( let product of products ) {
-        if( product.name.match(regex) ) {
-            console.log('works');
+        if( product.name.toLowerCase().match(regex) ) {
+            resetDivs();
+            list.innerHTML = `<li> <button>Add To Cart</button> <a id='${product._id - 1}' onclick='focusProduct(${product._id - 1})'>${product.name}</a></li>`;
         }
     }
 }
