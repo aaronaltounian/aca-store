@@ -29,23 +29,21 @@ const focusProduct = (index) => {
     item.innerHTML = products[index].name;
 }
 
-
-
 let searchBox = document.getElementById('searchBox');
 let searchButton = document.getElementById('searchButton');
 
-
-// look into filter w/ regex
+// handle search click event with regex and filter:
 searchButton.onclick = function() {
+    // create local variable to store a string from searchBox's value:
     let searchText = searchBox.value;
+    // make search text lower case to make it easier to compare without worry about case:
     searchText = searchText.toLowerCase();
+    // define regular expression based on the search text:
     let regex = new RegExp(searchText);
-    // if( searchBox.value.length === 0 ) alert('You must type in something to search!');
-    console.log(regex);
-    for( let product of products ) {
-        if( product.name.toLowerCase().match(regex) ) {
-            resetDivs();
-            list.innerHTML = `<li> <button>Add To Cart</button> <a id='${product._id - 1}' onclick='focusProduct(${product._id - 1})'>${product.name}</a></li>`;
-        }
-    }
+    // filter the products array by using the test method to find all the product names which match the regex, and return them to a new array:
+    let filteredProducts = products.filter( (product) => {
+        return regex.test(product.name.toLowerCase());
+    })
+    // re-render the list displaying only the filtered products:
+    displayProducts(filteredProducts);
 }
