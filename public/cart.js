@@ -30,10 +30,8 @@ const getTotal = () => {
     }
     // round off the total to the 2nd decimal place:
     total = total.toFixed(2);
+    return total;
     // display the total in the appropriate HTML element:
-    cartTotal.innerHTML = `<button onclick='checkout()'>Checkout</button>
-                            <button onclick='clearCart()'>Clear Cart</button>
-                            Cart Total: $${total}`;
 }
 
 // function to view cart:
@@ -49,14 +47,17 @@ const viewCart = () => {
                                     <a id='${index}' onclick='focusProduct(${productsIndex})'><span>${value.price}</span> ${value.name}</a>
                                 </li>`;
         })
+        cartTotal.innerHTML = `<button onclick='clearCart()'>Clear Cart</button>`;
         // update total:
         getTotal();
+        // generate checkout form:
+        checkout();
     }
 }
 
 // function to clear cart:
 const clearCart = () => {
     cart.length = 0;
-    updateQty();
+    updateQty();    
     viewCart();
 }
