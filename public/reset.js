@@ -4,4 +4,5 @@ const reset = () => {
     list.innerHTML = '';
     item.innerHTML = '';
     searchResults.innerHTML = '';
+    cartTotal.innerHTML = '';
 }

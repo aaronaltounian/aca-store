@@ -10,7 +10,7 @@
 <body>
     <header>
         <a onclick='displayProducts(products)'>Home</a>
-        <a id='cartQty'></a>
+        <a id='cartQty' onclick='viewCart(cart)'></a>
         <div class='search'>
             <input id='searchBox' type='text' placeholder='Find a product...' />
             <button id='searchButton'>Search!</button>
@@ -18,7 +18,15 @@
         <h1>A Store</h1>
     </header>
 
+    <select id='category'>
+        <option value=''>--Please select a category--</option>
+        <option value='food'>Food</option>
+        <option value='electronics'>Electronics</option>
+        <option value='sporting'>Sporting</option>
+    </select>
+    <button id='filter' onclick='displaySelected()'>Filter Products</button>
     <ul id='list'></ul>
+    <p id='cartTotal'></p>
 
     <div id='productContainer'>
         <div id='reviews'></div>
@@ -29,7 +37,8 @@
     <script src='elements.js'></script>
     <script src='reset.js'></script>
     <script src='search.js'></script>
-    <script src='add-to-cart.js'></script>
+    <script src='display-selected.js'></script>
+    <script src='cart.js'></script>
     <script src='focus-product.js'></script>
     <script src='reviews.js'></script>
     <script src='products.js'></script>    

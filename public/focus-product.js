@@ -8,19 +8,12 @@ const focusProduct = (index) => {
         price, 
         description, 
         imgUrl,
-        reviews,
-        rating,
-        category
         } = products[index];
 
-        console.log(name, price, description, imgUrl, rating, category, reviews[0].description, reviews[0].rating)
-
+    // use deconstructed properties to populate some HTML:
     item.innerHTML =   `<img src=${imgUrl} />
                         <h1>${name}</h1>
                         <h2>${price}</h2>
                         <button onclick='addToCart(${index})'>Add To Cart</button>
-                        <p>${description}</p>
-
-    
-    `;
+                        <p>${description}</p>`;
 }
