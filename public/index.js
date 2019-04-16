@@ -1,6 +1,6 @@
 'use strict'
 
-const cart = [];
+let cart = [];
 // function to display all products on page load or when 'home' link is clicked:
 const displayProducts = (products) => {
     reset();
@@ -19,3 +19,4 @@ const displayProducts = (products) => {
 }
 
 displayProducts(products);
+updateQty();
