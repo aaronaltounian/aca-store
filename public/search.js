@@ -23,3 +23,8 @@ const search = function() {
     // clear the search field:
     // searchBox.value = '';
 }
+
+const clearSearch = () => {
+    searchBox.value = '';
+    displayProducts(products);
+}
