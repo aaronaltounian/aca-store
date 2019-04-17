@@ -25,6 +25,8 @@ const search = function() {
 }
 
 const clearSearch = () => {
-    searchBox.value = '';
-    displayProducts(products);
+    if(searchBox.value) {
+        searchBox.value = '';
+        displayProducts(products);
+    }
 }

@@ -5,8 +5,13 @@ const updateQty = () => {
 }
 
 // function to add item to cart:
-const addToCart = (index) => {
-    cart.push(products[index])
+const addToCart = (index, itemQty) => {
+    // let toAdd = {
+    //     'product': products[index],
+    //     'qty': itemQty;
+    // }
+    // cart.push(toAdd);
+    cart.push(products[index]);
     updateQty();
 }
 
