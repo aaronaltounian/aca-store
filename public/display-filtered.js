@@ -1,7 +1,7 @@
 'use strict'
 
 // define function to display products by selected category:
-const displaySelected = () => {
+const displayFiltered = () => {
     // define empty array to add selected items to:
     let selected = [];
     // if a category is selected:
