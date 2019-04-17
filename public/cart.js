@@ -1,7 +1,6 @@
 // function to update cart quantity at top of page:
 const updateQty = () => {
     return cartQty.innerHTML = cart.length === 1 ? `${cart.length} item in cart.` : `${cart.length} items in cart.`
-
 }
 
 // function to add item to cart:
@@ -17,8 +16,11 @@ const addToCart = (index, itemQty) => {
 
 // function to remove item from cart:
 const removeFromCart = (index) => {
-    cart.splice(index, 1)
+    // splice 1 item from the array at the specified index position:
+    cart.splice(index, 1);
+    // update cart quantity:
     updateQty();
+    // re-render the updated cart array:
     viewCart(cart);
 }
 
@@ -42,14 +44,16 @@ const getTotal = () => {
 // function to view cart:
 const viewCart = () => {
     reset();
-    if(cart.length === 0) {list.innerHTML = `Cart is empty. <a class='back' onclick='displayProducts(products)'>Go Home</a>`}
+    // display message if cart is empty:
+    if(cart.length === 0) list.innerHTML = `Cart is empty. <a class='back' onclick='displayProducts(products)'>Go Home</a>`
     else {
         cart.map( (value, index) => {
             // use index from map function to be able to remove item from its location in cart array, but also define an index based on the item's position within the products array in order to display details for that product when it is clicked:
             let productsIndex = value._id - 1;
+
             list.innerHTML += `<li>
                                     <button id=${index} onclick='removeFromCart(${index})'>Remove from Cart</button>
-                                    <a id='${index}' onclick='focusProduct(${productsIndex})'><span>${value.price}</span> ${value.name}</a>
+                                    <a onclick='focusProduct(${productsIndex})'><span>${value.price}</span> ${value.name}</a>
                                 </li>`;
         })
         cartTotal.innerHTML = `<button onclick='clearCart()'>Clear Cart</button>`;
@@ -62,6 +66,7 @@ const viewCart = () => {
 
 // function to clear cart:
 const clearCart = () => {
+    // remove items from cart by setting length to 0:
     cart.length = 0;
     updateQty();    
     viewCart();
