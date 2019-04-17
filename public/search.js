@@ -1,5 +1,6 @@
 // handle search click event with regex and filter:
-searchButton.onclick = function() {
+// searchButton.onclick 
+const search = function() {
     reset();
     // create local variable to store a string from searchBox's value:
     let searchText = searchBox.value;
@@ -20,5 +21,5 @@ searchButton.onclick = function() {
     else { displayProducts(filteredProducts); }
 
     // clear the search field:
-    searchBox.value = '';
+    // searchBox.value = '';
 }
