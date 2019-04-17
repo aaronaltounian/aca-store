@@ -10,7 +10,10 @@
 <body>
     <header>
         <a onclick='displayProducts(products)'>Home</a>
-        <a id='cartQty' onclick='viewCart()'></a>
+        <div class='cart'>
+            <span id='cartQty' onclick='viewCart()'></span>
+            <a onclick='viewCart()'>View Cart</a>
+        </div>
         <div class='search'>
             <input id='searchBox' type='text' placeholder='Find a product...' />
             <button id='searchButton'>Search!</button>
