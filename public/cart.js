@@ -1,21 +1,35 @@
 // function to update cart quantity at top of page:
 const updateQty = () => {
-    return cartQty.innerHTML = cart.length === 1 ? `${cart.length} item in cart.` : `${cart.length} items in cart.`
+    // initialize variable to count cart quantity:
+    let count = 0;
+    // loop through cart and add the qty value of each product to the count:
+    for(let product of cart) {
+        count += Number(product.qty);
+    }
+    // return some html using ternary expression and string template literal:
+    return cartQty.innerHTML = count === 1 ? `${count} item in cart.` : `${count} items in cart.`
 }
 
 // function to add item to cart:
-const addToCart = (index, itemQty) => {
-    // let toAdd = {
-    //     'product': products[index],
-    //     'qty': itemQty;
-    // }
-    // cart.push(toAdd);
-    cart.push(products[index]);
+const addToCart = (index) => {
+    // define variable to shorten DOM target:
+    let itemQty = document.getElementById('itemQty');
+    // add the quantity specified in the select box to the qty value of the product at the passed-in index value:
+    products[index].qty += Number(itemQty.value);
+    // push the item to the cart:
+    cart.push(products[index])
+    // remove duplicates from the cart using filter function:
+    cart = cart.filter( (element, index, array) => {
+                return array.indexOf(element) === index;
+            })
     updateQty();
 }
 
 // function to remove item from cart:
 const removeFromCart = (index) => {
+    // get a product's location in the products array from the id of the product in the cart array, to update the qty in the products array (since the index in the cart array differs from the index in the products array):
+    let product = products[ cart[index]._id - 1 ]
+    product.qty = 0;
     // splice 1 item from the array at the specified index position:
     cart.splice(index, 1);
     // update cart quantity:
@@ -52,6 +66,8 @@ const viewCart = () => {
             let productsIndex = value._id - 1;
 
             list.innerHTML += `<li>
+                                    <label for="qty">Qty:</label>
+                                    <input id="qty" readonly value=${value.qty}>
                                     <button id=${index} onclick='removeFromCart(${index})'>Remove from Cart</button>
                                     <a onclick='focusProduct(${productsIndex})'><span>${value.price}</span> ${value.name}</a>
                                 </li>`;
@@ -68,6 +84,10 @@ const viewCart = () => {
 const clearCart = () => {
     // remove items from cart by setting length to 0:
     cart.length = 0;
+    // set qty of each product to 0:
+    for(let product of products) {
+        product.qty = 0;
+    }
     updateQty();    
     viewCart();
 }

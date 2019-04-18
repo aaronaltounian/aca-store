@@ -18,7 +18,7 @@ const focusProduct = (index) => {
         }
     }
     selectOptions();
-    
+
     // use deconstructed properties to populate some HTML:
     item.innerHTML =   `<img src=${imgUrl} />
                         <h1>${name}</h1>

@@ -5,6 +5,7 @@ const reviews = document.getElementById('reviews');
 
 const cartQty = document.getElementById('cartQty');
 const cartTotal = document.getElementById('cartTotal');
+const itemQty = document.getElementById('itemQty');
 
 const searchResults = document.getElementById('searchResults');
 const searchBox = document.getElementById('searchBox');
