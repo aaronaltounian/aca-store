@@ -46,13 +46,12 @@ const getTotal = () => {
     for( let product of cart ) {
         // slice the price after the dollar sign:
         let price = product.price.slice(1);
-        // since the price is stored as a string, use Number():
+        // since the price is stored as a string, use Number() and multiply the price times the quantity:
         total += Number(price) * Number(product.qty);
     }
     // round off the total to the 2nd decimal place:
     total = total.toFixed(2);
     return total;
-    // display the total in the appropriate HTML element:
 }
 
 // function to view cart:
@@ -81,15 +80,20 @@ const viewCart = () => {
     }
 }
 
+// change quantity of items using input boxes when in cart view:
 const changeQty = () => {
+    // loop through the cart to update quantity at each position:
     for( let i = 0; i < cart.length; i++ ) {
+        // define variable to hold the value of the input box at each position:
         let qty = document.getElementById(i).value;
-        console.log(qty);
+        // define variable to hold the index position of each item within the products array:
         let productsIndex = cart[i]._id - 1;
+        // set the qty property of the product within the products array equal to the qty derived from the input box value:
         products[productsIndex].qty = qty;
-        console.log(products[productsIndex].qty)
     }
+    // update quantities
     updateQty();
+    // regenerate checkout form (mainly to get new total):
     checkout();
 }
 
