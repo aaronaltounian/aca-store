@@ -47,7 +47,7 @@ const getTotal = () => {
         // slice the price after the dollar sign:
         let price = product.price.slice(1);
         // since the price is stored as a string, use Number():
-        total += Number(price);
+        total += Number(price) * Number(product.qty);
     }
     // round off the total to the 2nd decimal place:
     total = total.toFixed(2);
@@ -67,17 +67,30 @@ const viewCart = () => {
 
             list.innerHTML += `<li>
                                     <label for="qty">Qty:</label>
-                                    <input id="qty" readonly value=${value.qty}>
-                                    <button id=${index} onclick='removeFromCart(${index})'>Remove from Cart</button>
+                                    <input style="width:20px;" id="${index}" value=${value.qty}>
+                                    <button onclick='removeFromCart(${index})'>Remove All</button>
                                     <a onclick='focusProduct(${productsIndex})'><span>${value.price}</span> ${value.name}</a>
                                 </li>`;
         })
-        cartTotal.innerHTML = `<button onclick='clearCart()'>Clear Cart</button>`;
+        cartTotal.innerHTML = `<button id="updateItemQty" onclick='changeQty()'>Update Cart</button>
+                               <button onclick='clearCart()'>Clear Cart</button>`;
         // update total:
         getTotal();
         // generate checkout form:
         checkout();
     }
+}
+
+const changeQty = () => {
+    for( let i = 0; i < cart.length; i++ ) {
+        let qty = document.getElementById(i).value;
+        console.log(qty);
+        let productsIndex = cart[i]._id - 1;
+        products[productsIndex].qty = qty;
+        console.log(products[productsIndex].qty)
+    }
+    updateQty();
+    checkout();
 }
 
 // function to clear cart:
