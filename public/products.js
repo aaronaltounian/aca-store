@@ -230,3 +230,16 @@ const products = [{
   ]
   }];
 
+// let products = [];
+
+// fetch('https://acastore.herokuapp.com/products')
+//       .then(res => res.json())
+//       .then(data => {
+//         for(let i of data) {
+//           i._id = i.id;
+//           i.qty = 0;
+//           products.push(i);
+//         }
+//         console.log(products);
+//         displayProducts(products);
+//       })

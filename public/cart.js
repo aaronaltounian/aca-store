@@ -1,3 +1,4 @@
+'use strict'
 // function to update cart quantity at top of page:
 const updateQty = () => {
     // initialize variable to count cart quantity:
@@ -7,7 +8,7 @@ const updateQty = () => {
         count += Number(product.qty);
     }
     // return some html using ternary expression and string template literal:
-    return cartQty.innerHTML = count === 1 ? `${count} item in cart.` : `${count} items in cart.`
+    return cartQty.innerHTML = count === 1 ? `${count} item in cart.` : `${count} items in cart.`;
 }
 
 // function to add item to cart:
@@ -86,12 +87,12 @@ const changeQty = () => {
     for( let i = 0; i < cart.length; i++ ) {
         // define variable to hold the value of the input box at each position:
         let qty = document.getElementById(i).value;
-        // splice out the item from cart if qty is made 0:
-        if(qty == 0) { cart.splice(i, 1); }
         // define variable to hold the index position of each item within the products array:
         let productsIndex = cart[i]._id - 1;
         // set the qty property of the product within the products array equal to the qty derived from the input box value:
         products[productsIndex].qty = qty;
+        // splice out the item from cart if qty is made 0:
+        if(qty == 0) { cart.splice(i, 1); }
     }
     // rerender cart and update quantities:
     viewCart();
