@@ -86,12 +86,15 @@ const changeQty = () => {
     for( let i = 0; i < cart.length; i++ ) {
         // define variable to hold the value of the input box at each position:
         let qty = document.getElementById(i).value;
+        // splice out the item from cart if qty is made 0:
+        if(qty == 0) { cart.splice(i, 1); }
         // define variable to hold the index position of each item within the products array:
         let productsIndex = cart[i]._id - 1;
         // set the qty property of the product within the products array equal to the qty derived from the input box value:
         products[productsIndex].qty = qty;
     }
-    // update quantities
+    // rerender cart and update quantities:
+    viewCart();
     updateQty();
     // regenerate checkout form (mainly to get new total):
     checkout();
