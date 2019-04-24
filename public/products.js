@@ -1,3 +1,20 @@
+// initialize the products array:
+let products = [];
+// fetch the products
+fetch('https://acastore.herokuapp.com/products')
+      .then(res => res.json())
+      .then(data => {
+        // iterate through data array to populate out the products array (this could be done with `products = data`, but i stuck with the loop in order to add properties to each position while looping)
+        for(let i of data) {
+          // add '_id' property identical to the 'id' property provided in order to keep using the rest of the code which relies on the '_id' property in the originally provided array
+          i._id = i.id;
+          // initialize quantity to 0:
+          i.qty = 0;
+          products.push(i);
+        }
+        displayProducts(products);
+      })
+
 // const products = [{
 //     "_id": 1,
 //     "name": "Body Luxuries Sweet Lavender Hand Sanitizer",
@@ -230,16 +247,3 @@
 //   ]
 //   }];
 
-let products = [];
-
-fetch('https://acastore.herokuapp.com/products')
-      .then(res => res.json())
-      .then(data => {
-        for(let i of data) {
-          i._id = i.id;
-          i.qty = 0;
-          products.push(i);
-        }
-        console.log(products);
-        displayProducts(products);
-      })

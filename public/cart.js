@@ -90,7 +90,7 @@ const changeQty = () => {
         // define variable to hold the index position of each item within the products array:
         let productsIndex = cart[i]._id - 1;
         // set the qty property of the product within the products array equal to the qty derived from the input box value:
-        products[productsIndex].qty = qty;
+        products[productsIndex].qty = Number(qty);
         // splice out the item from cart if qty is made 0:
         if(qty == 0) { cart.splice(i, 1); }
     }

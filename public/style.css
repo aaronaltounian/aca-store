@@ -43,6 +43,10 @@ form {
     width: 500px;
 }
 
+form > input {
+    margin: 10px 0 0 0;
+}
+
 form > button {
     width: 200px;
 }
