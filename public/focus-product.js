@@ -10,7 +10,7 @@ const focusProduct = (index) => {
         imgUrl,
         } = products[index];
 
-    // create loop function to generate HTML for select input options:
+    // create loop function to generate HTML for select box input options:
     let options;
     function selectOptions() {
         for(let i = 1; i <= 10; i++) {

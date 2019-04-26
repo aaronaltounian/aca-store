@@ -1,5 +1,6 @@
 'use strict'
-// function to update cart quantity at top of page:
+
+// function to update cart quantity displayed at top of page:
 const updateQty = () => {
     // initialize variable to count cart quantity:
     let count = 0;
@@ -29,7 +30,7 @@ const addToCart = (index) => {
 // function to remove item from cart:
 const removeFromCart = (index) => {
     // get a product's location in the products array from the id of the product in the cart array, to update the qty in the products array (since the index in the cart array differs from the index in the products array):
-    let product = products[ cart[index]._id - 1 ]
+    let product = products[ cart[index].id - 1 ]
     product.qty = 0;
     // splice 1 item from the array at the specified index position:
     cart.splice(index, 1);
@@ -43,6 +44,7 @@ const removeFromCart = (index) => {
 const getTotal = () => {
     // define variable to count the total:
     let total = 0;
+
     // loop through cart array:
     for( let product of cart ) {
         // slice the price after the dollar sign:
@@ -50,6 +52,7 @@ const getTotal = () => {
         // since the price is stored as a string, use Number() and multiply the price times the quantity:
         total += Number(price) * Number(product.qty);
     }
+
     // round off the total to the 2nd decimal place:
     total = total.toFixed(2);
     return total;
@@ -63,7 +66,7 @@ const viewCart = () => {
     else {
         cart.map( (value, index) => {
             // use index from map function to be able to remove item from its location in cart array, but also define an index based on the item's position within the products array in order to display details for that product when it is clicked:
-            let productsIndex = value._id - 1;
+            let productsIndex = value.id - 1;
 
             list.innerHTML += `<li>
                                     <label for="qty">Qty:</label>
@@ -72,12 +75,10 @@ const viewCart = () => {
                                     <a onclick='focusProduct(${productsIndex})'><span>${value.price}</span> ${value.name}</a>
                                 </li>`;
         })
-        cartTotal.innerHTML = `<button id="updateItemQty" onclick='changeQty()'>Update Cart</button>
-                               <button onclick='clearCart()'>Clear Cart</button>`;
-        // update total:
-        getTotal();
-        // generate checkout form:
-        checkout();
+        cartTotal.innerHTML = `<h2>Cart Total: $${getTotal()}</h2>
+                               <button class='cartButton' id="updateItemQty" onclick='changeQty()'>Update Cart</button>
+                               <button class='cartButton' onclick='clearCart()'>Clear Cart</button>
+                               <button class='checkoutButton' onclick='checkout()'>Checkout</button>`;
     }
 }
 
@@ -88,7 +89,7 @@ const changeQty = () => {
         // define variable to hold the value of the input box at each position:
         let qty = document.getElementById(i).value;
         // define variable to hold the index position of each item within the products array:
-        let productsIndex = cart[i]._id - 1;
+        let productsIndex = cart[i].id - 1;
         // set the qty property of the product within the products array equal to the qty derived from the input box value:
         products[productsIndex].qty = Number(qty);
         // splice out the item from cart if qty is made 0:
@@ -97,14 +98,12 @@ const changeQty = () => {
     // rerender cart and update quantities:
     viewCart();
     updateQty();
-    // regenerate checkout form (mainly to get new total):
-    checkout();
 }
 
 // function to clear cart:
 const clearCart = () => {
-    // remove items from cart by setting length to 0:
-    cart.length = 0;
+    // clear the cart array
+    cart = [];
     // set qty of each product to 0:
     for(let product of products) {
         product.qty = 0;

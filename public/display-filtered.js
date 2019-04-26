@@ -6,9 +6,9 @@ const displayFiltered = () => {
     let selected = [];
     // if a category is selected:
     if(category.value) {
-        products.map( (element) => {
+        products.map( (product) => {
             // if a product's category matches the selected category, push the product to the selected array:
-            if(element.category === category.value) selected.push(element);
+            if(product.category === category.value) selected.push(product);
         })
         // use the displayProducts function with the selected array:
         displayProducts(selected);
