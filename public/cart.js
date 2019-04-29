@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 // function to update cart quantity displayed at top of page:
 const updateQty = () => {
